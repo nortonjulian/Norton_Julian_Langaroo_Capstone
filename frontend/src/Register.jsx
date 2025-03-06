@@ -54,7 +54,6 @@ const Register = ({ onRegister }) => {
 
   return (
     <div>
-      <h2>Register</h2>
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
         <div>

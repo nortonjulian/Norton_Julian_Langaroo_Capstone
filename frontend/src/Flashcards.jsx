@@ -1,6 +1,6 @@
 // import react from 'react'
 
-const Flashcards = ({ words }) => {
+const Flashcards = ({ words = [] }) => {
     return (
         <div>
             <h2>Flashcards</h2>
@@ -10,9 +10,13 @@ const Flashcards = ({ words }) => {
                words.map((word, index) => (
                 <div key={index}>
                     <h3>{word.word}</h3>
+                    {word.audioUrl ? (
                     <button onClick={() => new Audio(word.audioUrl).play()}>
-                        Listen
+                    🔊  Listen
                     </button>
+               ) : (
+                    <p>Audio not available</p>
+                )}
                 </div>
                ))     
             )}

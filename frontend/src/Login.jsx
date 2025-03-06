@@ -32,7 +32,6 @@ const Login = ({ onLogin, error }) => {
 
   return (
     <div>
-      <h2>Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
