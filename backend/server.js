@@ -17,11 +17,11 @@ const leaderboardRoutes = require('./routes/leaderboard')
 
 app.use('/api/auth', authRoutes)
 app.use('/api/words', wordsRoutes)
-app.use('/api/auth', leaderboardRoutesRoutes)
+app.use('/api/auth', leaderboardRoutes)
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDB'))
-.catch(err => console.log("MongoDB connection error: ". err))
+.catch(err => console.log("MongoDB connection error: ", err))
 
 app.listen(port, () => {
     console.log(`Server is running on port, ${port}`)
