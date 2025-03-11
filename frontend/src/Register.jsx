@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
-const Register = ({ onRegister }) => {
+const Register = ({ setUserAuth }) => {
   const [credentials, setCredentials] = useState({
     username: '',
     email: '',
@@ -8,6 +10,7 @@ const Register = ({ onRegister }) => {
     confirmPassword: '',
   });
   const [formError, setFormError] = useState('');
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,16 +47,23 @@ const Register = ({ onRegister }) => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+ 
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      onRegister(credentials);
-    }
+    if (!validateForm()) return
+
+    //register logic here
+    let res = await axios.post("http://localhost:8080/api/auth/register",credentials)
+    console.log("res",res)
+    setUserAuth(res.data._doc)
+    setCredentials({ username: '', email: '', password: '', confirmPassword: '' })
+    navigate('/profile')
   };
 
   return (
     <div>
+      <h1>Langaroo</h1>
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
         <div>

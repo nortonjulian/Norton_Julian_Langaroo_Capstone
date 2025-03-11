@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react' 
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate } from 'react-router-dom'
 
-const Quiz = () => {
+const Profile = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+
     const navigate = useNavigate() 
 
     useEffect(() => {
@@ -18,13 +19,13 @@ const Quiz = () => {
         <div>
             {isLoggedIn && (
                 <>
-                    <h2>Quiz</h2>
-                    <p>Test your language skills with interactive quizzes!</p>
+                <h2>User Profile</h2>
+                    <p>Welcome to your profile! Here you can update your information and track your progress.</p>
+
                 </>
             )}
         </div>
     )
 }
 
-export default Quiz
-
+export default Profile

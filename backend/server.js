@@ -6,7 +6,7 @@ const cors = require('cors')
 dotenv.config()
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
@@ -14,10 +14,14 @@ app.use(cors());
 const authRoutes = require('./routes/auth')
 const wordsRoutes = require('./routes/words')
 const leaderboardRoutes = require('./routes/leaderboard')
-
+const userRoutes = require('./routes/user')
+app.get("/",(req,res)=>{
+    res.send("hello")
+})
 app.use('/api/auth', authRoutes)
 app.use('/api/words', wordsRoutes)
-app.use('/api/auth', leaderboardRoutes)
+app.use('/api/leaderboard', leaderboardRoutes)
+app.use('/api/user', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDB'))

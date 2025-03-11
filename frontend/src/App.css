@@ -49,5 +49,46 @@
 button {
   background-color: royalblue;
   color: white;
-
+  font-size: 13px;
+  margin-top: 8px
 }
+
+.auth-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.auth-links button {
+  margin-top: 8px 16px;
+}
+
+.navbar {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 1rem 2rem;
+   width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+}
+
+.home-link {
+  text-decoration: none;
+  gap: 16px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+}
+

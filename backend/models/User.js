@@ -4,8 +4,8 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    nativeLanguage: { type: String, required: true },
-    languageToLearn: { type: String, required: true },
+    nativeLanguage: { type: String },
+    languageToLearn: { type: String },
     progress: { 
         flashcards: { type: Number, default: 0 },
         quizScores: { type: Number, default: 0 },
@@ -21,4 +21,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema)
 
-export default userSchema;
+module.exports = User;

@@ -7,4 +7,4 @@ const wordSchema = new mongoose.Schema({
     pronunciation: String,
 })
 
-export default wordSchema;
+module.exports= wordSchema;

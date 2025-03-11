@@ -1,58 +1,49 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import Flashcards from './flashcards'
-import AuthProfile from './AuthProfile'
+import Profile from './Profile'
 import Leaderboard from './Leaderboard'
 import Quiz from './Quiz'
 import Login from './Login'
 import Register from './Register'
-// import axios from 'axios'
 import './App.css'
+import Home from './Home'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
-  // const [count, setCount] = useState(0)
+  const [userAuth, setUserAuth] = useState(() => {
+    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+  })
 
   useEffect(() => {
     const user = localStorage.getItem('user')
-    if (user) {
-      setIsLoggedIn(true)
-    }
+    setUserAuth(user ? JSON.parse(user) : null)
   }, [])
 
   return (
-    <div>
-      <h1>Langaroo</h1>
-      <h2>Jump into Language Learning!</h2>
-      <Router>
-      <nav>
-        <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
-      </nav>
-          <Routes>
-          {!isLoggedIn && (
-             <>
-              <Route path="/login" element={<div className="route-container"><Login /></div>} />
-              <Route path="/register" element={<div className="route-container"><Register /></div>} />
-             </>
-          )}
-          {isLoggedIn && (
+    <Router>
+      <div className="app-container">
+        <Navbar userAuth={userAuth} setUserAuth={setUserAuth} />
+
+        <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login setUserAuth={setUserAuth} />} />
+              <Route path="/register" element={<Register setUserAuth={setUserAuth}/>} />
+          
+          {userAuth ? (
             <>
-              <Route path="/" element={<div className="route-container"><Flashcards /></div>}/> 
-              <Route path="/auth" element={<div className="route-container"><AuthProfile /></div>} />
-              <Route path="/leaderboard" element={<div className="route-container"><Leaderboard /></div>} />
-              <Route path="/quiz" element={<div className="route-container"><Quiz /></div>} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/flashcards" element={<Flashcards />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/quiz" element={<Quiz />} />
             </>
+          ) : (
+            <Route path="*" element={<Navigate to="/login" />} />
           )}
-          </Routes>
-      </Router>
-    </div>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

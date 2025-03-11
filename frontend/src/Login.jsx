@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin, error }) => {
+const Login = ({ setUserAuth, error }) => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [formError, setFormError] = useState('');
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,12 +28,16 @@ const Login = ({ onLogin, error }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      onLogin(credentials);
+      localStorage.setItem("user", JSON.stringify(credentials))
+      setUserAuth(credentials);
+      setCredentials({ username: '', password: '' })
+      navigate('/profile')
     }
   };
 
   return (
     <div>
+      <h1>Langaroo</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
