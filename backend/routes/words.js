@@ -13,10 +13,12 @@ router.get("/", async (req, res) => {
 
 router.get("/:language", async (req, res) => {
   const { language } = req.params;
+  console.log(language)
   try {
-    const words = await Word.find({ language });
+    const words = await Word.find({ language: language });
     res.json(words);
   } catch (error) {
+    console.log(error.message)
     res
       .status(500)
       .json({ error: "Failed to fetch words in desired language" });

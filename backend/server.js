@@ -18,10 +18,31 @@ const userRoutes = require('./routes/user')
 app.get("/",(req,res)=>{
     res.send("hello")
 })
+
+app.get("/api/proxy/audio", async (req, res) => {
+    const { word, lang } = req.query;
+
+    if (!word || !lang) {
+        return res.status(400).json({ error: "Missing word or language" })
+    }
+
+    const apiUrl = `https://lingualibre.org/api/v1/recordings/list?query=${word}&lang=${lang}`
+
+    try {
+        const response = await fetch(apiUrl)
+        const data = await response.json()
+        console.log("data",data)
+        res.json(data)
+    } catch (error) {
+        console.log("Error fetching audio", error)
+        res.status(500).json({ error: "Failed to fetch audio "})
+    }
+})
+
 app.use('/api/auth', authRoutes)
 app.use('/api/words', wordsRoutes)
 app.use('/api/leaderboard', leaderboardRoutes)
-app.use('/api/user', userRoutes)
+app.use('/api/users', userRoutes)
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDB'))

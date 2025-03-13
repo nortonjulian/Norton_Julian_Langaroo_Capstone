@@ -87,6 +87,16 @@ const Register = ({ setUserAuth }) => {
           />
         </div>
         <div>
+          <label>Native Language:</label>
+          <input
+            type="text"
+            name="nativeLanguage"
+            value={credentials.nativeLanguage}
+            onChange={handleInputChange}
+            placeholder="Enter your native language"
+          />
+        </div>
+        <div>
           <label>Password:</label>
           <input
             type="password"

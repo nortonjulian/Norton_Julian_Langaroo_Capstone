@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const Login = ({ setUserAuth, error }) => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [formError, setFormError] = useState('');
@@ -24,15 +24,25 @@ const Login = ({ setUserAuth, error }) => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      localStorage.setItem("user", JSON.stringify(credentials))
-      setUserAuth(credentials);
-      setCredentials({ username: '', password: '' })
-      navigate('/profile')
-    }
+    if (!validateForm()) return
+   try {
+     let res = await axios.post("http://localhost:8080/api/auth/login",credentials)
+     console.log("res",res) 
+     let user = res.data.user
+     user.token = res.data.token
+     
+     localStorage.setItem("user", JSON.stringify(user))
+       setUserAuth(user);
+       setCredentials({ username: '', password: '' })
+       navigate('/profile')
+    
+   } catch (error) {
+    console.log("error",error)
+   }
+    
   };
 
   return (

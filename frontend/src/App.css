@@ -92,3 +92,24 @@ button {
   font-size: 1rem;
 }
 
+.flashcard-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+/* .flashcard {
+  b
+} */
+
+/* .profile-h1 {
+  display: flex;
+  margin-bottom: 40px;
+} */
+.user-container, .profile-pic {
+  /* margin-bottom: 160px; */
+  width: 150px;
+  border-radius: 50%;
+} 
+

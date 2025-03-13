@@ -7,4 +7,5 @@ const wordSchema = new mongoose.Schema({
     pronunciation: String,
 })
 
-module.exports= wordSchema;
+const word = mongoose.model("wordLists",wordSchema,"wordLists")
+module.exports= word;
