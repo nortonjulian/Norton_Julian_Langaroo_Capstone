@@ -8,4 +8,4 @@ const wordSchema = new mongoose.Schema({
 })
 
 const word = mongoose.model("wordLists",wordSchema,"wordLists")
-module.exports= word;
+module.exports = word;

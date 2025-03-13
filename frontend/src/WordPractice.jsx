@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
 
-const Flashcards = ({ setWordList, setToLang}) => {
+const WordPractice = () => {
     const [wordList, setLocalWordList] = useState([]);
-    const [toLang, localSetToLang] = useState("");
+    const [toLang, setToLang] = useState("");
     const [loading, setLoading] = useState(false);
    
     const listen = async(word )=>{
@@ -41,39 +41,31 @@ const Flashcards = ({ setWordList, setToLang}) => {
             queueStrategy: 1,
         
           });
-
     }
-    useEffect(() => {
-        if (!toLang) return;
 
-        const fetchWords = async () => {
-   
+        const fetchWords = async (e) => {
+            let language = e.target.value
+            setToLang(language)
             console.log("test")
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8080/api/words/${toLang}`)
+                const response = await fetch(`http://localhost:8080/api/words/${language}`)
                 const data = await response.json()
                 console.log("Raw response", data)
                     setLocalWordList(data[0].words)
-                    setWordList(data[0].words)
+                
             } catch (error) {
                 console.log("Error fetching words", error)
             }
             setLoading(false)
         }
 
-        fetchWords()
-    }, [toLang])
-
     return (
         <div>
-            <h2>Flashcards</h2>
+            <h2>Word Practice</h2>
             <div>
                 <label>language:</label>
-                <select value={toLang} onChange={(e) => {
-                localSetToLang(e.target.value);
-                setToLang(e.target.value); 
-                }}>
+                <select value={toLang} onChange={(e) => fetchWords(e)}>
                     <option value="">Select Language</option>
                     <option value="Arabic">Arabic</option>
                     <option value="Danish">Danish</option>
@@ -97,7 +89,7 @@ const Flashcards = ({ setWordList, setToLang}) => {
                 </select>
             </div>
 
-            {!loading && wordList.length === 0 && <p>Loading words...</p>}
+            {/* {!loading && wordList.length === 0 && <p>Loading words...</p>} */}
 
             {!loading && wordList.length > 0 && (
                 <div className="flashcard-container" >
@@ -116,4 +108,4 @@ const Flashcards = ({ setWordList, setToLang}) => {
     );
 };
 
-export default Flashcards;
+export default WordPractice;

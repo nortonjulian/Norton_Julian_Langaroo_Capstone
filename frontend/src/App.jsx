@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import Navbar from './Navbar'
-import Flashcards from './flashcards'
+import WordPractice from './WordPractice'
 import Profile from './Profile'
 import Leaderboard from './Leaderboard'
 import Quiz from './Quiz'
@@ -16,10 +16,11 @@ function App() {
     return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
   })
 
-  useEffect(() => {
-    const user = localStorage.getItem('user')
-    setUserAuth(user ? JSON.parse(user) : null)
-  }, [])
+  console.log(userAuth,'user')
+  // useEffect(() => {
+  //   const user = localStorage.getItem('user')
+  //   setUserAuth(user ? JSON.parse(user) : null)
+  // }, [])
 
   return (
     <Router>
@@ -34,7 +35,7 @@ function App() {
           {userAuth ? (
             <>
               <Route path="/profile" element={<Profile />} />
-              <Route path="/flashcards" element={<Flashcards />} />
+              <Route path="/flashcards" element={<WordPractice />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/quiz" element={<Quiz />} />
             </>
