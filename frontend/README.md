@@ -16,7 +16,7 @@ Audio Pronunciation: External API
 
 Setup Instructions
 1. Clone the repo
-git clone https://github.com/yourusername/flashcards-app.git
+git clone https://github.com/yourusername/langaroo-app.git
 cd langaroo-app
 
 2. Install dependencies
