@@ -13,3 +13,15 @@ Frontend: React (Vite)
 Backend: Node.js with Express (or Flask, if applicable)
 API Requests: Fetch API
 Audio Pronunciation: External API
+
+Setup Instructions
+1. Clone the repo
+git clone https://github.com/yourusername/flashcards-app.git
+cd langaroo-app
+
+2. Install dependencies
+npm install  # For the frontend
+
+3. Start the frontend
+npm start  # Runs on localhost:8080
+

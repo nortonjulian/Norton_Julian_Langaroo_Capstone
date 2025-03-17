@@ -31,6 +31,18 @@ router.put("/:id", async (req, res) => {
   }
 })
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id)
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" })
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting profile" })
+  }
+})
+
 router.put("/:id/quiz-score", async (req, res) => {
   try {
     const { quizScore } = req.body;
