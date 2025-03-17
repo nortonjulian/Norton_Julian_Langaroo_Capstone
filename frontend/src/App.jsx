@@ -35,7 +35,7 @@ function App() {
           {userAuth ? (
             <>
               <Route path="/profile" element={<Profile />} />
-              <Route path="/flashcards" element={<WordPractice />} />
+              <Route path="/practice" element={<WordPractice />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/quiz" element={<Quiz />} />
             </>

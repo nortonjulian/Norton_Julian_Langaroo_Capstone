@@ -9,7 +9,8 @@ const Quiz = () => {
     const wordsUpdated = useRef(false)
 
     const generateQuizQuestions = (words) => {
-        return words.map(({ word, translation }, _, allWords ) => {
+        const shuffleWords = [...words].sort(() => Math.random() - .5)
+        return shuffleWords.map(({ word, translation }, _, allWords ) => {
             const incorrectAns = allWords
             .map((w) => w.translation)
             .filter((t) => t != translation)
@@ -114,7 +115,7 @@ const Quiz = () => {
                 <h2>Language Quiz - {toLang || "Select a Language"}</h2>
                 {/* <Flashcards setWordList={handleWordListUpdate} setToLang={setToLang} /> */}
                 <div>
-                <label>language:</label>score
+                <label className='quiz-label'>Language:</label>
                 <select value={toLang} onChange={(e) => fetchWords(e)}>
                     <option value="">Select Language</option>
                     <option value="Arabic">Arabic</option>

@@ -64,7 +64,7 @@ const WordPractice = () => {
         <div>
             <h2>Word Practice</h2>
             <div>
-                <label>language:</label>
+                <label className="wp-label">Language:</label>
                 <select value={toLang} onChange={(e) => fetchWords(e)}>
                     <option value="">Select Language</option>
                     <option value="Arabic">Arabic</option>

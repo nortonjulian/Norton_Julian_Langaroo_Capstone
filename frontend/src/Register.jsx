@@ -66,6 +66,7 @@ const Register = ({ setUserAuth }) => {
       <h1>Langaroo</h1>
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
+      <div className='register-links'>
         <div>
           <label>Username:</label>
           <input
@@ -115,6 +116,7 @@ const Register = ({ setUserAuth }) => {
             onChange={handleInputChange}
             placeholder="Confirm your password"
           />
+        </div>
         </div>
         <button type="submit">Register</button>
       </form>

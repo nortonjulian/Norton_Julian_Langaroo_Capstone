@@ -52,7 +52,7 @@ const Login = ({ setUserAuth, error }) => {
       {formError && <p style={{ color: 'red' }}>{formError}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
+          <label className='login-links'>Username:</label>
           <input
             type="text"
             name="username"
@@ -62,7 +62,7 @@ const Login = ({ setUserAuth, error }) => {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label className='login-links'>Password:</label>
           <input
             type="password"
             name="password"

@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react' 
 import { useNavigate } from 'react-router-dom'
-import Quiz from './Quiz'
+
+const BADGE_CRITERIA = [
+    {name: "Beginner", condition: (score) => score >= 50 },
+    {name: "Intermediate", condition: (score) => score >= 100 },
+    {name: "Advanced", condition: (score) => score >= 150 },
+    {name: "Master", condition: (score) => score >= 200 },
+]
+
 const Profile = () => {
   
     const [user, setUser] = useState(null)
@@ -22,7 +29,10 @@ const Profile = () => {
                     }
                 })
                 const data = await response.json()
-                setUser(data)   
+
+                const score = (data.progress.flashcards + data.progress.quizScores) / 2
+                const earnedBadges = BADGE_CRITERIA.filter(badge => badge.condition(score)).map(b => b.name);
+                setUser({...data, badges: earnedBadges })   
             } catch (error) {
                 console.log("Error fetching use data", error)
             }
@@ -86,7 +96,7 @@ const Profile = () => {
             {user && (
                 <>
                     <div className='user-container'>
-                    <h2>User Profile</h2><br />
+                    <h2>{user.username}'s Profile</h2><br />
                        <p><strong>Username:</strong> {user.username}</p>
                        <p><strong>Native Language:</strong> {user.nativeLanguage}</p>
                        <p><strong>Learning Score:</strong>  {avgProgress.toFixed(2)}</p>
@@ -98,14 +108,16 @@ const Profile = () => {
                     />   
                     <button onClick={handleFileUpload}>Upload</button>  */}
                     <h3>Badges Earned:</h3>
-                        {user.progress.badges.length > 0 ? (
-                            <ul>
-                                {user.badges.map((badge, index) => (
-                                    <li key={index}>{badge}</li>
-                                ))}
-                            </ul>
-                        ) : (
+                        {user.progress.badges.length === 0 ? (
                             <p>No badges earned yet. Keep learning!</p>
+                        ) : (
+                            <ul>
+                               {BADGE_CRITERIA.map((badge, index) => (
+                                <li key={index} style={{ color: user.badges.includes(badge.name) ? "black" : "gray" }}>
+                                    {user.badges.includes(badge.name) ? "🏆" : "🔒"} {badge.name}
+                                </li>
+                               ))}
+                            </ul>  
                         )}
        
                     </div> 

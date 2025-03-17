@@ -64,24 +64,34 @@ button {
 }
 
 .navbar {
+   /* display: flex; */
    display: flex;
+   flex-wrap: wrap;
    align-items: center;
    justify-content: space-between;
+   border-bottom: gray 1px solid;
+   background-color: white;
    padding: 1rem 2rem;
    width: 100%;
    position: fixed;
    top: 0;
    left: 0;
    right: 0;
+   z-index: 1000;
 }
 
 .home-link {
   text-decoration: none;
+  font-weight: bold;
+  color: royalblue;
+  font-size: 1.2rem;
   gap: 16px;
 }
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
+  justify-self: center;
   gap: 16px;
   align-items: center;
   margin-right: 50px;
@@ -89,11 +99,14 @@ button {
 
 .nav-links a {
   text-decoration: none;
-  font-size: 1rem;
+  color: royalblue;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .flashcard-container {
   display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   padding: 20px;
@@ -118,4 +131,68 @@ button {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   padding: 20px;
+}
+
+.login-links {
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.register-links label{
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.wp-label {
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.quiz-label {
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+/* Apply styles for mobile devices (320px - 480px) */
+@media (min-width: 320px) and (max-width: 480px) {
+  .home-link {
+    font-size: 1rem;
+    text-align: center;
+    width: center;
+    padding-bottom: 10px;
+  } 
+  .flashcard-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Apply styles for iPads and Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .flashcard-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Apply styles for Small screens and laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .flashcard-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Apply styles for Desktops and large screens (1025px - 1200px) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .flashcard-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  /* You can adjust styles as needed for desktops and large screens */
+}
+
+.leaderboard-rank {
+  list-style-type: none;
+  padding: 0
+}
+
+.leaderboard-rank ul{
+ margin-bottom: 15px;
 }

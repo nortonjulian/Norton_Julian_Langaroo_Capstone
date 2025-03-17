@@ -15,7 +15,7 @@ const Navbar = ({ userAuth, setUserAuth }) => {
             {userAuth ? (
               <>  
                 <Link to="/profile">Profile</Link>
-                <Link to="/flashcards">Word Practice</Link>
+                <Link to="/practice">Word Practice</Link>
                 <Link to="/quiz">Quiz</Link>
                 <Link to="/leaderboard">Leaderboard</Link>
                 <Link to="/" onClick={handleLogout}>Logout</Link>
