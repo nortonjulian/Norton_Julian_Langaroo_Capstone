@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react' 
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from './App'
 
 const BADGE_CRITERIA = [
     {name: "Beginner", condition: (score) => score >= 50 },
@@ -16,7 +17,7 @@ const Leaderboard = () => {
     useEffect(() => {
         const fetchUsers = async () => {
                 try {
-                    const response = await fetch("http://localhost:8080/api/users")
+                    const response = await fetch(`${BASE_URL}/api/users`)
                     const data = await response.json()
 
                     if (data.length > 0) {

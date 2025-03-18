@@ -11,6 +11,8 @@ import Register from './Register'
 import './App.css'
 import Home from './Home'
 
+export const BASE_URL = import.meta.env.VITE_API
+
 function App() {
   const [userAuth, setUserAuth] = useState(() => {
     return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react' 
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from './App'
 
 const BADGE_CRITERIA = [
     {name: "Beginner", condition: (score) => score >= 50 },
@@ -23,7 +24,7 @@ const Profile = () => {
             console.log(storedUser)
             const userId = JSON.parse(storedUser).id
             try {
-                const response = await fetch(`http://localhost:8080/api/users/${userId}`, {
+                const response = await fetch(`${BASE_URL}/api/users/${userId}`, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -54,7 +55,7 @@ const Profile = () => {
         if (!window.confirm("Are you sure? this action is irreversible.")) return
 
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${user._id}`, { 
+            const response = await fetch(`${BASE_URL}/api/users/${user._id}`, { 
                 method: "DELETE" 
             })
 

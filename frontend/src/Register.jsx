@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from './App';
 
 const Register = ({ setUserAuth }) => {
   const [credentials, setCredentials] = useState({
@@ -54,7 +55,7 @@ const Register = ({ setUserAuth }) => {
     if (!validateForm()) return
 
     //register logic here
-    let res = await axios.post("http://localhost:8080/api/auth/register",credentials)
+    let res = await axios.post(`${BASE_URL}/api/auth/register`,credentials)
     console.log("res",res)
     setUserAuth(res.data._doc)
     setCredentials({ username: '', email: '', password: '', confirmPassword: '' })

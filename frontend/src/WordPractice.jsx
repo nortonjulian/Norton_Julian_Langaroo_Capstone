@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
+import { BASE_URL } from "./App";
 
 const WordPractice = () => {
     const [wordList, setLocalWordList] = useState([]);
@@ -49,7 +50,7 @@ const WordPractice = () => {
             console.log("test")
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8080/api/words/${language}`)
+                const response = await fetch(`${BASE_URL}/api/words/${language}`)
                 const data = await response.json()
                 console.log("Raw response", data)
                     setLocalWordList(data[0].words)

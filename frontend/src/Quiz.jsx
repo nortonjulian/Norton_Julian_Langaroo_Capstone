@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react' 
+import { BASE_URL } from './App'
 
 const Quiz = () => {
     const [quizQuestions, setQuizQuestions] = useState([])
@@ -44,7 +45,7 @@ const Quiz = () => {
 
     const updateQuizScore = async (userId, newScore) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${userId}/quiz-score`, {
+            const response = await fetch(`${BASE_URL}/api/users/${userId}/quiz-score`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,7 +62,7 @@ const Quiz = () => {
 
     const updateLeaderboardScore = async (userId, newLeaderboardScore) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${userId}/leader-score`, {
+            const response = await fetch(`${BASE_URL}/api/users/${userId}/leader-score`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -99,7 +100,7 @@ const Quiz = () => {
             console.log("test")
         //  setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8080/api/words/${language}`)
+                const response = await fetch(`${BASE_URL}/api/words/${language}`)
                 const data = await response.json()
                 console.log("Raw response", data)
                     handleWordListUpdate(data[0].words)

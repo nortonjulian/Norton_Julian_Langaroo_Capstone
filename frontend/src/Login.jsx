@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from './App';
+
 const Login = ({ setUserAuth, error }) => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [formError, setFormError] = useState('');
@@ -29,7 +31,7 @@ const Login = ({ setUserAuth, error }) => {
 
     if (!validateForm()) return
     try {
-     let res = await axios.post("http://localhost:8080/api/auth/login",credentials)
+     let res = await axios.post(`${BASE_URL}/api/auth/login`,credentials)
      console.log("res",res) 
      let user = res.data.user
      user.token = res.data.token
