@@ -20,6 +20,7 @@ const Profile = () => {
         const token = localStorage.getItem('token')
     
         if (storedUser) {
+            console.log(storedUser)
             const userId = JSON.parse(storedUser).id
             try {
                 const response = await fetch(`http://localhost:8080/api/users/${userId}`, {
@@ -30,7 +31,8 @@ const Profile = () => {
                 })
                 const data = await response.json()
 
-                const score = (data.progress.flashcards + data.progress.quizScores) / 2
+                const score = (data.progress.quizScores) 
+                console.log(score)
                 const earnedBadges = BADGE_CRITERIA.filter(badge => badge.condition(score)).map(b => b.name);
                 setUser({...data, badges: earnedBadges })   
             } catch (error) {
@@ -44,6 +46,34 @@ const Profile = () => {
     useEffect(() => {
         fetchUserData()
     }, []) 
+
+    const handleDeleteAccount = async () => {
+    
+        if (!user?._id) return;
+
+        if (!window.confirm("Are you sure? this action is irreversible.")) return
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/users/${user._id}`, { 
+                method: "DELETE" 
+            })
+
+            const result = await response.json()
+            console.log("Delete response", result)
+
+            if (!response.ok) {
+                throw new Error("Failed to delete account")
+            }
+
+            alert("Account successfully deleted. You will be logged out.")
+            setUser(null)
+            localStorage.clear()
+            navigate("/")
+        } catch (error) {
+            console.log("Failed to delete account:", error)
+            alert("An error occurred while deleting your account.")
+        }
+    }
  
 
     let avgProgress = 0;
@@ -97,7 +127,6 @@ const Profile = () => {
                 <>
                     <div className='user-container'>
                     <h2>{user.username}'s Profile</h2><br />
-                       <p><strong>Username:</strong> {user.username}</p>
                        <p><strong>Native Language:</strong> {user.nativeLanguage}</p>
                        <p><strong>Learning Score:</strong>  {avgProgress.toFixed(2)}</p>
                        <p><strong>Leaderboard:</strong>  {user.leaderboard.badges}</p>
@@ -119,7 +148,10 @@ const Profile = () => {
                                ))}
                             </ul>  
                         )}
-       
+                        {/* Delete Button */}
+                        <button  className="profile-delete" onClick={handleDeleteAccount}>
+                            Delete Account
+                        </button>
                     </div> 
                 </>
             )}

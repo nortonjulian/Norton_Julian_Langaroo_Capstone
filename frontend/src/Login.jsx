@@ -28,7 +28,7 @@ const Login = ({ setUserAuth, error }) => {
     e.preventDefault();
 
     if (!validateForm()) return
-   try {
+    try {
      let res = await axios.post("http://localhost:8080/api/auth/login",credentials)
      console.log("res",res) 
      let user = res.data.user
@@ -39,10 +39,20 @@ const Login = ({ setUserAuth, error }) => {
        setCredentials({ username: '', password: '' })
        navigate('/profile')
     
-   } catch (error) {
-    console.log("error",error)
-   }
-    
+      } catch (error) {
+        if (error.response && error.response.data) {
+          if (error.response.data.message === "User not registered") {
+            setFormError("User not registered. Please check your username.");
+          } else if (error.response.data.message === "Incorrect password") {
+            setFormError("Incorrect password. Please try again.");
+          } else {
+            setFormError("Invalid username or password.");
+          }
+        } else {
+          setFormError("Something went wrong. Please try again later.");
+        }
+        console.log("error", error);
+    }
   };
 
   return (

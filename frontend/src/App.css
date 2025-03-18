@@ -53,6 +53,12 @@ button {
   margin-top: 8px
 }
 
+.profile-delete {
+  background-color: red;
+  color: white;
+  margin-top: 10px;
+}
+
 .auth-links {
   display: flex;
   gap: 6px;
@@ -78,6 +84,10 @@ button {
    left: 0;
    right: 0;
    z-index: 1000;
+}
+
+.navbar.no-border {
+  border-bottom: none;
 }
 
 .home-link {
@@ -152,6 +162,7 @@ button {
   margin-right: 6px;
   font-weight: bold;
 }
+
 
 /* Apply styles for mobile devices (320px - 480px) */
 @media (min-width: 320px) and (max-width: 480px) {

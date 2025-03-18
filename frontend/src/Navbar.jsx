@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom'
-import Login from './Login';
-import Register from './Register';
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = ({ userAuth, setUserAuth }) => {
+  const location = useLocation()
+  const noBorderPages = ["/", "/login", "/register"]
+
   const handleLogout = () => {
     localStorage.removeItem('user')
     setUserAuth(false)
   }
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${noBorderPages.includes(location.pathname) ? 'no-border' : ''}`}>
           <Link to={userAuth ? "/profile" : "/"} className='home-link'>Langaroo</Link>
 
           <div className="nav-links">
