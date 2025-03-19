@@ -93,9 +93,9 @@ const WordPractice = () => {
             {/* {!loading && wordList.length === 0 && <p>Loading words...</p>} */}
 
             {!loading && wordList.length > 0 && (
-                <div className="flashcard-container" >
+                <div className="practice-container" >
                 {wordList.map((word, index) => (
-                    <div key={index} className="flashcard">
+                    <div key={index} className="practice">
                         <h3>{word.word}</h3>
                         <h3>{word.translation}</h3>
                             <button onClick={() => listen(word.word)}>

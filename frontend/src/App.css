@@ -114,7 +114,7 @@ button {
   font-size: 1.2rem;
 }
 
-.flashcard-container {
+.practice-container {
   display: grid;
   /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(4, 1fr);
@@ -172,28 +172,28 @@ button {
     width: center;
     padding-bottom: 10px;
   } 
-  .flashcard-container {
+  .practice-container {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 /* Apply styles for iPads and Tablets (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
-  .flashcard-container {
+  .practice-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* Apply styles for Small screens and laptops (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .flashcard-container {
+  .practice-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Apply styles for Desktops and large screens (1025px - 1200px) */
 @media (min-width: 1025px) and (max-width: 1200px) {
-  .flashcard-container {
+  .practice-container {
     grid-template-columns: repeat(4, 1fr);
   }
   /* You can adjust styles as needed for desktops and large screens */

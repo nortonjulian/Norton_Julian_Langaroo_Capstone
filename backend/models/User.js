@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     nativeLanguage: { type: String },
     languageToLearn: { type: String },
     progress: { 
-        flashcards: { type: Number, default: 0 },
         quizScores: { type: Number, default: 0 },
         badges: { type: [String], default: [] },
     },

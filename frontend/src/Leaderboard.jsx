@@ -27,7 +27,7 @@ const Leaderboard = () => {
                     }
                     
                     const updatedUsers = data.map(user => {
-                        const score = (user.progress.flashcards + user.progress.quizScores) / 2;
+                        const score = (user.progress.quizScores);
 
                         const earnedBadges = BADGE_CRITERIA.filter(badge => badge.condition(score)).map(b => b.name)
                         // const storedBadges = JSON.parse(localStorage.getItem(` badges_${user.id}`)) || []
@@ -52,7 +52,7 @@ const Leaderboard = () => {
                 <ul className="leaderboard-rank">
                     {users.map((user, index) => (
                         <ul key={user.id}>
-                            <span><strong>{index + 1}</strong>. {user.username} = Score: {(user.progress.flashcards + user.progress.quizScores) / 2}</span>
+                            <span><strong>{index + 1}</strong>. {user.username} = Score: {(user.progress.quizScores)}</span>
                             {user.progress.badges.length > 0 && (
                                 <>
                                     <br />
