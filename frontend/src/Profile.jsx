@@ -79,7 +79,7 @@ const Profile = () => {
 
     let avgProgress = 0;
     if (user) {
-        avgProgress = (user.progress.flashcards + user.progress.quizScores) / 2;
+        avgProgress = (user.progress.quizScores);
     }
     // const handleFileChange = (e) => {
     //     const selectedFile = e.target.files[0]
